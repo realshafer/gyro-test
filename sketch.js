@@ -18,8 +18,6 @@ let det=false
 
 let t=0,dt=1;
 
-let bob = 0, sarah = 0 , jeff = 0; // gyroscope variables
-
 function cb(event){
   dthetaXdt=event.rotationRate.alpha*PI/180;
   dthetaYdt=event.rotationRate.beta*PI/180;
@@ -51,103 +49,89 @@ function onClick(){
 
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(400, 400,WEBGL);
 }
+
+
+
+
 
 function draw(){
-  dthetaXdt = map(bob, -60, 60, 0, width);
-  dthetaYdt = map(sarah, -30, 30, 0, height);
-  dthetaZdt = map(jeff, -30, 30, 0, height);
-  
-  // Text commands that display debugging data
-  textAlign(LEFT);
-  textSize(20);
-  fill('rgb(255,255,255)');
-  text("orientation data:", 25, 25);
-  textSize(15);
-  text("x: " + bob, 25, 50);
-  text("y: " + sarah, 25, 70);
-  text("z: " + jeff, 25, 90);
-}
-
-
-
-// function draw(){
  
-//   background(0);
+  background(0);
   
-//   directionalLight(255,255,255,-1,-1,-1);
-//   ambientLight(80);
+  directionalLight(255,255,255,-1,-1,-1);
+  ambientLight(80);
 
-//   dtheta1dt=dthetaXdt;
-//   dtheta2dt=dthetaYdt*sin(thetaX)+dthetaZdt*cos(thetaX);
-//   dtheta3dt=-dthetaYdt*cos(thetaX)*cos(theta2)
-//     +dthetaZdt*sin(thetaX)*cos(theta2)
+  dtheta1dt=dthetaXdt;
+  dtheta2dt=dthetaYdt*sin(thetaX)+dthetaZdt*cos(thetaX);
+  dtheta3dt=-dthetaYdt*cos(thetaX)*cos(theta2)
+    +dthetaZdt*sin(thetaX)*cos(theta2)
   
 
-//   scale(1.5)
+  scale(1.5)
 
   
-//   stroke(0)
+  stroke(0)
 
 
-//   let r1=100,r2=80,r3=60;
+  let r1=100,r2=80,r3=60;
 
-//   noStroke()
-//   let detailX=48*2;
-//   let detailY=32;
+  noStroke()
+  let detailX=48*2;
+  let detailY=32;
 
-//   //outer ring
-//   torus(r1,5,detailX,detailY)
+  //outer ring
+  torus(r1,5,detailX,detailY)
 
-//   push()
-//   translate((r1+r2)/2,0,0)
-//   rotateZ(PI/2)
-//   cylinder(5,20)
-//   pop()
-//   push()
-//   translate(-(r1+r2)/2,0,0)
-//   rotateZ(PI/2)
-//   cylinder(5,20)
-//   pop()
+  push()
+  translate((r1+r2)/2,0,0)
+  rotateZ(PI/2)
+  cylinder(5,20)
+  pop()
+  push()
+  translate(-(r1+r2)/2,0,0)
+  rotateZ(PI/2)
+  cylinder(5,20)
+  pop()
 
-//   //middle ring
-//   rotateX(theta1)
-//   rotateX(PI/2)
-//   torus(80,5,detailX,detailY)
+  //middle ring
+  rotateX(theta1)
+  rotateX(PI/2)
+  torus(80,5,detailX,detailY)
 
-//   push()
-//   translate(0,(r2+r3)/2,0)
-//   rotateY(PI/2)
-//   cylinder(5,20)
-//   pop()
+  push()
+  translate(0,(r2+r3)/2,0)
+  rotateY(PI/2)
+  cylinder(5,20)
+  pop()
 
-//   push()
-//   translate(0,-(r2+r3)/2,0)
-//   rotateY(PI/2)
-//   cylinder(5,20)
-//   pop()
+  push()
+  translate(0,-(r2+r3)/2,0)
+  rotateY(PI/2)
+  cylinder(5,20)
+  pop()
 
 
-//   //inner ring
-//   rotateY(theta2);
-//   rotateY(PI/2)
-//   torus(r3,5,detailX,detailY)
+  //inner ring
+  rotateY(theta2);
+  rotateY(PI/2)
+  torus(r3,5,detailX,detailY)
 
-//   //box
-//   rotateX(theta3);
-//   box(50)
-//   rotateZ(PI/2)
-//   cylinder(5,2*r3)
+  //box
+  rotateX(theta3);
+  box(50)
+  rotateZ(PI/2)
+  cylinder(5,2*r3)
 
-//   if(det && dtheta1dt==dtheta1dt){
-//     theta1+=dtheta1dt*dt;
-//     theta2+=dtheta2dt*dt;
-//     theta3+=dtheta3dt*dt;
+  if(det && dtheta1dt==dtheta1dt){
+    theta1+=dtheta1dt*dt;
+    theta2+=dtheta2dt*dt;
+    theta3+=dtheta3dt*dt;
     
-//     thetaX+=dthetaXdt*dt;
-//     thetaY+=dthetaYdt*dt;
-//     thetaZ+=dthetaZdt*dt;
-//   }
+    thetaX+=dthetaXdt*dt;
+    thetaY+=dthetaYdt*dt;
+    thetaZ+=dthetaZdt*dt;
+  }
 
-// }
+}
