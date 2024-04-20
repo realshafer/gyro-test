@@ -18,6 +18,8 @@ let det=false
 
 let t=0,dt=1;
 
+let osc;
+
 function cb(event){
   dthetaXdt=event.rotationRate.alpha*PI/180;
   dthetaYdt=event.rotationRate.beta*PI/180;
@@ -53,7 +55,13 @@ function setup() {
 }
 
 
-
+function sound() {
+  osc = new p5.Oscillator('sine');
+  osc.freq(map(dthetaXdt,-3.14, 3.14, 500, 5000));
+  osc.amp(1);
+  osc.start();
+  
+}
 
 
 function draw(){
